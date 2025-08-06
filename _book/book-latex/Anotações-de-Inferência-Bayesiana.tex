@@ -120,6 +120,22 @@
 \usepackage{cancel}
 \KOMAoption{captions}{tableheading,figureheading}
 \makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
 \makeatletter
@@ -194,12 +210,130 @@ Gustavo S. Garone}
 
 \bookmarksetup{startatroot}
 
-\chapter{Inferência hi}\label{inferuxeancia-hi}
+\chapter{Inferência Bayesiana}\label{inferuxeancia-bayesiana}
 
 \part{Inferência Bayesiana}
 
+\chapter{O Pensamento Bayesiano}\label{o-pensamento-bayesiano}
 
-\printbibliography[title=Estou pensando]
+\section{Inferência}\label{inferuxeancia}
+
+Podemos dizer que inferência é qualquer processo racional de redução de
+\textbf{incerteza}. Se não há incerteza, não há necessidade da
+estatística.
+
+Como exemplo simples, considere uma caixa com 5 bolas, algumas verdes
+(\(v\)), e o restante brancas (\(b\)). Suponha que amostramos duas
+bolas, sem reposição. Isto é, retiramos duas bolas desta caixa, e que
+ambas as bolas retiradas foram verdes. A partir deste experimento,
+podemos \emph{inferir} que \(v \geq 2\), ou seja, ao menos duas bolas da
+caixa são verdes. Caso retirássemos uma branca e uma verde, poderíamos
+naturalmente inferir que ao menos uma bola da caixa é branca, e ao menos
+uma é verde.
+
+Note que, mesmo após esse processo, a incerteza sobre a composição da
+caixa contínua. Contudo, com a nova informação, ocorre uma
+\emph{atualização da incerteza}.
+
+A inferência estatística é, portanto, o processo de redução de
+incertezas a partir de dados e métodos estatísticos. Neste contexto, a
+\emph{Inferência Bayesiana} é a inferência estatística baseada na
+perspectiva \emph{subjetiva} de probabilidade.
+
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, toptitle=1mm, left=2mm, toprule=.15mm, bottomtitle=1mm, colback=white, rightrule=.15mm, titlerule=0mm, opacityback=0, coltitle=black, opacitybacktitle=0.6, arc=.35mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Probabilidade}]
+
+O objeto probabilidade pode ser estudada de diversas perspectivas.
+Estamos acostumados com o \emph{cálculo de probabilidade}, em que
+desenvolvemos teoremas e outros resultados a partir dos axiomas de
+Kolmogorov.
+
+\[
+\begin{aligned}
+P(A) \geq 0, \forall A \in \mathcal{F} \\
+P(\Omega) = 1 \\
+P\left(\bigcup\limits_{n=1}^\infty A_n\right) = \sum^\infty_{n=1} A_n
+\end{aligned}
+\]
+
+Por outro lado, há pessoas que se ocupam em entender a probabilidade do
+ponto de vista da \emph{Teoria da Medida}, preocupando-se em estudar a
+probabilidade como uma função de medida.
+
+Ainda assim, existe uma visão mais ``filosófica'' do estudo da
+probabilidade, que se preocupa na \emph{interpretação} da probabilidade.
+Uma interpretação
+\href{https://inferencia-classica.netlify.app}{clássica} é da
+probabilidade como medida de frequência, enquanto a interpretação
+subjetiva da probabilidade, utilizada na inferência Bayesiana, toma a
+probabilidade como uma medida de \emph{incerteza}.
+
+Por exemplo, num lançamento de moedas, a teoria frequentista afirma que,
+ao lançar uma moeda honesta um número grande de vezes, esperaria que
+50\% dos lançamentos resultasse em cara. Por outro lado, na teoria
+subjetiva da probabilidade, alguém que acredita que a moeda é honesta
+diria, antes do primeiro lançamento desta, que não há razão de acreditar
+que a moeda vá provavelmente cair cara, tão quanto acreditar que mais
+provavelmente cairá coroa. Nesta visão, a probabilidade é um número que
+\emph{mede, quantifica ou representa a incerteza} do observador sobre um
+fenômeno.
+
+Esta discussão sobre o significado de probabilidade é denominado
+\emph{Teoria da Probabilidade}.
+
+\end{tcolorbox}
+
+\subsection{Cenários de Incerteza}\label{cenuxe1rios-de-incerteza}
+
+Além do exemplo da caixa com bolas que discutimos anteriormente, podemos
+pensar em outros cenários de incerteza:
+
+Considere um indivíduo com erupções na pele. Este tipo de erupções pode
+ser causado por doenças diversas, dentre elas, uma é considerada grave,
+provocando incerteza no indivíduo sobre sua saúde. Sabendo disto, o
+indivíduo vai ao hospital em busca de informações sobre sua condição. A
+partir de experimentos, como exames médicos, a incerteza do indivíduo
+sobre a doença e sua saúde é reduzida pelas informações obtidas.
+
+Em outro exemplo, considere que um avião caiu num corpo d'água e sua
+localização exata é desconhecida. Conforme descobrimos informações do
+avião, como partes encontradas no mar, consideração de oceanográficos e
+climáticos, análise técnica do modelo do avião, resultados de buscas
+passadas e outras informações, podemos gradativamente reduzir a região
+de queda do avião, até encontrarmos o ponto exato ou muito próximo desta
+queda.
+
+Este exemplo é mais real do que pensa! Técnicas bayesianas foram
+utilizadas na
+\href{https://www.technologyreview.com/2014/05/27/13283/how-statisticians-found-air-france-flight-447-two-years-after-it-crashed-into-atlantic/}{busca
+pelo infame voo 447}
+
+Num último exemplo, suponha que estamos interessados em estudar a
+eficácia de um medicamento na redução da taxa do colesterol. A incerteza
+jaz exatamente na eficácia do medicamento, isto é, quanto a taxa de
+colesterol é reduziada após uso do medicamento. Para esta análise,
+coletaríamos amostras aleatórias simples. Suponha, por hipótese, que o
+colesterol dos pacientes em estudo amostrados
+(\(\boldsymbol{X}_n = (X_1, \dots, X_n)\) seguem uma distribuição
+Normal, com variância 16 e média desconhecida que queremos inferir:
+
+\[
+X \sim (?,16)
+\]
+
+No modelo clássico, usaríamos de métodos como o uso do estimador não
+viesado de variância uniformemente mínima. Por outro lado, o bayesiano
+começaria com uma incerteza antes da coleta da amostra e, com a
+informação obtida, atualizaria sua incerteza em uma nova distribuição:
+\[
+\mathcal{D} \stackrel{\boldsymbol{X}_n}{\rightarrow} \mathcal{D} \lvert x_1,
+\dots, x_n
+\]
+
+Esta ferramenta de atualização de informação é o cerne da abordagem
+Bayesiana, e será extensivamente estudada pelo curso.
+
+
+\printbibliography
 
 
 
