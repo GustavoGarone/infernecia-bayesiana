@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 94edd6b6-c943-46e3-a5ec-957ca3e9c068
+      url: https://inferencia-bayesiana.netlify.app

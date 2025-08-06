@@ -1,0 +1,89 @@
+---
+lang: pt
+project:
+  type: book
+engines: [julia]
+julia:
+  env: [QT_QPA_PLATFORM=xcb]
+execute:
+  echo: false
+  cache: true
+# filters:
+#   - diagram
+# diagram:
+#   cache: true
+#   engine:
+#     tikz:
+#       header-includes:
+#         - '\usetikzlibrary{patterns}'
+#         - '\usetikzlibrary{arrows}'
+#         - '\usetikzlibrary{automata}'
+#         - '\usetikzlibrary{calc}'
+#         - '\usetikzlibrary{positioning}'
+#         - '\usetikzlibrary{quotes}'
+#         - '\usepackage{pgfplots}'
+#         - '\usepackage{mathrsfs}'
+#         - '\pgfplotsset{compat=1.16}'
+book:
+  title: Anotações de Inferência Bayesiana
+  author: Aulas de Luis G. Esteves & Victor Fossaluza, digitadas por Gustavo S. Garone
+  date: last-modified
+  navbar:
+    search: true
+    right:
+      - icon: github
+        href: https://github.com/GustavoGarone/inferencia-bayesiana
+        aria-label: GitHub
+      - text: <i class='fa-solid fa-file-pdf'></i> PDF
+        href: Anotações-de-Inferência-Bayesiana.pdf
+        # icon: download
+  favicon: Omega.png
+  chapters:
+    - index.qmd
+    - part: Inferência Bayesiana
+      chapters:
+        - pensamento-bayesiano.qmd
+    # - references.qmd
+bibliography: references.bib
+csl: associacao-brasileira-de-normas-tecnicas.csl
+format:
+  html:
+    theme:
+      light: [cosmo]
+      dark: [cosmo, theme-dark.scss]
+    respect-user-color-scheme: true
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    extract-media: ./tikzdesigns/
+    fig-cap-location: top
+    fig-align: center
+  pdf:
+    documentclass: scrreport
+    cite-method: biblatex
+    include-in-header:
+      - text: |
+          \usepackage{cancel}
+    #      \usepackage{amsmath}
+    fig-cap-location: top
+    fig-align: center
+    default-image-extension: tex
+    lof: true
+    lot: true
+    geometry:
+      - top = 30mm
+      - left = 30mm
+      - right = 20mm
+      - bottom = 20mm
+    # mathfont: "ams"
+    monofont: "Consolas"
+  latex:
+    documentclass: scrreport
+    cite-method: biblatex
+    include-in-header:
+      - text: |
+          \usepackage{cancel}
+    #      \usepackage{asmath}
+    fig-cap-location: top
+    fig-align: center
+    default-image-extension: tex
