@@ -1,1 +1,1 @@
-# Inferência hi
+# Inferência Bayesiana
