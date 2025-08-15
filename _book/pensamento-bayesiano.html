@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./teorema-de-bayes.html" rel="next">
 <link href="./index.html" rel="prev">
 <link href="./Omega.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -349,6 +350,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O Pensamento Bayesiano</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./teorema-de-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -395,7 +402,9 @@ window.Quarto = {
 <h2 data-number="2.1" class="anchored" data-anchor-id="inferência"><span class="header-section-number">2.1</span> Inferência</h2>
 <p>Podemos dizer que inferência é qualquer processo racional de redução de <strong>incerteza</strong>. Se não há incerteza, não há necessidade da estatística.</p>
 <!-- TODO: desenhos? -->
-<p>Como exemplo simples, considere uma caixa com 5 bolas, algumas verdes (<span class="math inline">\(v\)</span>), e o restante brancas (<span class="math inline">\(b\)</span>). Suponha que amostramos duas bolas, sem reposição. Isto é, retiramos duas bolas desta caixa, e que ambas as bolas retiradas foram verdes. A partir deste experimento, podemos <em>inferir</em> que <span class="math inline">\(v \geq 2\)</span>, ou seja, ao menos duas bolas da caixa são verdes. Caso retirássemos uma branca e uma verde, poderíamos naturalmente inferir que ao menos uma bola da caixa é branca, e ao menos uma é verde.</p>
+<div id="exm-urna" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 2.1 (Bolas na caixa)</strong></span> Considere uma caixa com 5 bolas, algumas verdes (<span class="math inline">\(v\)</span>), e o restante brancas (<span class="math inline">\(b\)</span>). Suponha que amostramos duas bolas, sem reposição. Isto é, retiramos duas bolas desta caixa, e que ambas as bolas retiradas foram verdes. A partir deste experimento, podemos <em>inferir</em> que <span class="math inline">\(v \geq 2\)</span>, ou seja, ao menos duas bolas da caixa são verdes. Caso retirássemos uma branca e uma verde, poderíamos naturalmente inferir que ao menos uma bola da caixa é branca, e ao menos uma é verde.</p>
+</div>
 <p>Note que, mesmo após esse processo, a incerteza sobre a composição da caixa contínua. Contudo, com a nova informação, ocorre uma <em>atualização da incerteza</em>.</p>
 <p>A inferência estatística é, portanto, o processo de redução de incertezas a partir de dados e métodos estatísticos. Neste contexto, a <em>Inferência Bayesiana</em> é a inferência estatística baseada na perspectiva <em>subjetiva</em> de probabilidade.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Probabilidade">
@@ -425,9 +434,13 @@ P\left(\bigcup\limits_{n=1}^\infty A_n\right) = \sum^\infty_{n=1} A_n
 <section id="cenários-de-incerteza" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="cenários-de-incerteza"><span class="header-section-number">2.1.1</span> Cenários de Incerteza</h3>
 <p>Além do exemplo da caixa com bolas que discutimos anteriormente, podemos pensar em outros cenários de incerteza:</p>
-<p>Considere um indivíduo com erupções na pele. Este tipo de erupções pode ser causado por doenças diversas, dentre elas, uma é considerada grave, provocando incerteza no indivíduo sobre sua saúde. Sabendo disto, o indivíduo vai ao hospital em busca de informações sobre sua condição. A partir de experimentos, como exames médicos, a incerteza do indivíduo sobre a doença e sua saúde é reduzida pelas informações obtidas.</p>
-<p>Em outro exemplo, considere que um avião caiu num corpo d’água e sua localização exata é desconhecida. Conforme descobrimos informações do avião, como partes encontradas no mar, consideração de oceanográficos e climáticos, análise técnica do modelo do avião, resultados de buscas passadas e outras informações, podemos gradativamente reduzir a região de queda do avião, até encontrarmos o ponto exato ou muito próximo desta queda.</p>
+<div id="exm-pele" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 2.2 (Erupções na pele)</strong></span> Considere um indivíduo com erupções na pele. Este tipo de erupções pode ser causado por doenças diversas, dentre elas, uma é considerada grave, provocando incerteza no indivíduo sobre sua saúde. Sabendo disto, o indivíduo vai ao hospital em busca de informações sobre sua condição. A partir de experimentos, como exames médicos, a incerteza do indivíduo sobre a doença e sua saúde é reduzida pelas informações obtidas.</p>
+</div>
+<div id="exm-aviao" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 2.3 (Avião perdido)</strong></span> Em outro exemplo, considere que um avião caiu num corpo d’água e sua localização exata é desconhecida. Conforme descobrimos informações do avião, como partes encontradas no mar, consideração de oceanográficos e climáticos, análise técnica do modelo do avião, resultados de buscas passadas e outras informações, podemos gradativamente reduzir a região de queda do avião, até encontrarmos o ponto exato ou muito próximo desta queda.</p>
 <p>Este exemplo é mais real do que pensa! Técnicas bayesianas foram utilizadas na <a href="https://www.technologyreview.com/2014/05/27/13283/how-statisticians-found-air-france-flight-447-two-years-after-it-crashed-into-atlantic/">busca pelo infame voo 447</a></p>
+</div>
 <p>Num último exemplo, suponha que estamos interessados em estudar a eficácia de um medicamento na redução da taxa do colesterol. A incerteza jaz exatamente na eficácia do medicamento, isto é, quanto a taxa de colesterol é reduziada após uso do medicamento. Para esta análise, coletaríamos amostras aleatórias simples. Suponha, por hipótese, que o colesterol dos pacientes em estudo amostrados (<span class="math inline">\(\boldsymbol{X}_n = (X_1, \dots, X_n)\)</span> seguem uma distribuição Normal, com variância 16 e média desconhecida que queremos inferir:</p>
 <p><span class="math display">\[
 X \sim (?,16)
@@ -862,6 +875,9 @@ X \sim (?,16)
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./teorema-de-bayes.html" class="pagination-link" aria-label="Teorema de Bayes">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

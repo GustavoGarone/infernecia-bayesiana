@@ -1,0 +1,111 @@
+# Teorema de Bayes
+
+Da probabilidade, conhecemos o enunciado do Teorema de Bayes.
+
+::: {#thm-bayes} 
+
+## Teorema de Bayes
+
+Sejam $A_1, A_2, ... A_n \in \mathcal{A}$ eventos que particionam $\Omega$, isto
+é, $A_i \cap A_j = \emptyset, \bigcup_{i=1}^n A_i = \Omega,$ e $D \in
+\mathcal{A}$ um evento tal que $P(D) > 0$. Então, para $i = 1, 2, \dots, n$, 
+
+$$
+P(A_i \rvert D) = \frac{P(D \rvert A_i) P(A_i)}{\sum\limits^{n}_{j = 1} P(D \rvert
+A_j)P(A_j)}
+$$
+
+:::
+
+:::{.callout-note title = "Detalhes importantes"}
+Note que $P(X=x \rvert \theta = \theta_i)$ é a *função de verossimilhança*. Note
+também que o denominador, $\sum\limits^{n}_{j = 1} P(D \rvert A_j)P(A_j)$,
+***não*** depende de $i$!!!
+:::
+
+
+<!-- TODO: resto dos exempos que estão no seu caderno -->
+
+Note que, para o @exm-urna, 
+<!-- TODO: adicionar a tabela do ex 1 q tbm ta no caderno (pode ser crossref dentro -->
+<!-- do proprio arquivo) -->
+
+$$
+\begin{aligned}
+E(\theta) &= \frac{5}{2} \\
+E(\theta \rvert X_1 = 1, X_2 = 0)  &= 1 \cdot \frac{2}{10} + 2 \cdot {3}{10} + 3
+\cdot \frac {3}{10} + 4 \cdot \frac{2}{10} = \frac{5}{2} \\
+\mathrm{Var}(\theta \rvert X_1 = 1, X_2 = 0) &= E(\theta^2 \rvert X_1 = 1, X_2=  0) - E(\theta \rvert X_1 = 1, X_2
+= 0)^2 \\ 
+&= 1^2 \cdot \frac{2}{10} + 2^2 \cdot \frac{3}{10} + 3^2
+\cdot \frac{3}{10} + 4^2 \cdot \frac{2}{10} - \frac{25}{4} = \frac{21}{20}
+\end{aligned}
+$$
+
+::: {#exr-urnaoutraamostra}
+
+Refaça o exercício (encontre a distribuição a posteriori de $\theta$) dado a
+amostra $X_1 = 1, X_2 = 1$
+
+:::
+
+::: {#sol-urnaoutraamostra}
+Pelo @thm-bayes,
+
+$$
+\frac{\frac{i}{5} \cdot \frac{i-1}{4} \cdot \frac{1}{6}}{\sum\limits^5_{j=0}
+\frac{j}{5} \cdot \frac{j-1}{4} \cdot \frac{1}{6}} = \frac{i(i-1)}
+{\sum\limits^5_{j=0}j(j-1)} = \frac{i(i-1)}{40}
+$$
+<!-- TODO: grafico -->
+
+Um outro caminho para resolução envolve o uso de proporcionalidade. Podemos
+observar que, pelo @thm-bayes, 
+$$
+\begin{aligned}
+P(\theta = i \rvert \boldsymbol{X} = (1,1)) &\propto
+P(\boldsymbol{X} = (1,1) \rvert \theta = i)P(\theta = i) = \frac{i}{5} \cdot
+\frac{i-1}{4} \cdot \frac{1}{6} \mathbb{1}_{\Theta}(i) \\
+&= \frac{i(i-1)}{120}
+\mathbb{1}_{\Theta}(i) \propto i(i-1) \mathbb{1}_{\Theta}(i)
+\end{aligned}
+$$
+
+ou seja, podemos simplesmente nos preocupar com o numerador e dividir
+("normalizar") pela soma dos termos:
+<!-- TODO: tabela -->
+:::
+
+::: {#exm-infosomaurna}
+
+## Informação sobre a soma
+
+Ainda no cenário do @exm-urna, considere a função $T(\boldsymbol{X}) = X_1 +
+X_2$ do número de bolas verdes na amostra. Você é informado que $T(X_ = 1$.
+Vamos determinar a distribuição a posteriori de $\theta$ dado que $X_1 + X_2 = 1$.
+
+$$
+P(\theta = i \rvert X_1 + X_2 = 1) = \frac{P(X_1 + X_2 = 1 \rvert \theta =
+i)P(\theta=i)}{\sum\limits^5_{j=0}P(X_1 + X_2 = 1 \rvert \theta = j)P(\theta=j)}
+$$
+usando da proporcionalidade,
+$$
+\begin{aligned}
+P(\theta = i \rvert X_1 + X_2 = 1) &\propto P(X_1 + X_2 \rvert \theta =
+i)P(\theta = i)\\ 
+&= \sum\limits_{(x_1,x_2) \in \mathfrak{X} : x_1 + x_2 = 1}
+P(X_1 = x_1, X_2 = x_2 \rvert \theta = i)P(\theta = i) \\
+&= [P(X_1 = 1, X_2 = 0 \rvert \theta = i) + P(X_1 = 0, X_2 = 1 \rvert \theta = i)]P(\theta = i) \\
+&= \left[\frac{i}{5} \cdot \frac{(5-i)}{4} + \frac{5-i}{5} \cdot \frac{i}{4}\right] \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \\
+&= \frac{i(5-i)}{10} \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \propto i(5-1)
+\mathbb{1}_\Theta(i)
+\end{aligned}
+$$
+
+Note que isso nos concede a mesma quantidade de informação para a inferência que
+a amostra completa, ou seja, obtemos a mesma a posteriori utilizando esta
+estatística. Isto ocorre uma vez que a função $T(\boldsymbol{X})$ é uma
+estatística *suficiente* no sentido bayesiano. Mais adiante, discutiremos isso
+com mais detalhes.
+
+:::

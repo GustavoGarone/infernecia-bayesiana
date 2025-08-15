@@ -6,13 +6,20 @@ Podemos dizer que inferência é qualquer processo racional de redução de
 **incerteza**. Se não há incerteza, não há necessidade da estatística.
 
 <!-- TODO: desenhos? -->
-Como exemplo simples, considere uma caixa com 5 bolas, algumas verdes ($v$), e o
+
+::: {#exm-urna}
+
+## Bolas na caixa
+
+Considere uma caixa com 5 bolas, algumas verdes ($v$), e o
 restante brancas ($b$). Suponha que amostramos duas bolas, sem reposição. Isto
 é, retiramos duas bolas desta caixa, e que ambas as bolas retiradas foram
 verdes. A partir deste experimento, podemos *inferir* que $v \geq 2$, ou seja, ao
 menos duas bolas da caixa são verdes. Caso retirássemos uma branca e uma verde,
 poderíamos naturalmente inferir que ao menos uma bola da caixa é branca, e ao
 menos uma é verde.
+
+:::
 
 Note que, mesmo após esse processo, a incerteza sobre a composição da caixa
 contínua. Contudo, com a nova informação, ocorre uma *atualização da incerteza*.
@@ -64,12 +71,23 @@ Probabilidade*.
 Além do exemplo da caixa com bolas que discutimos anteriormente, podemos pensar
 em outros cenários de incerteza:
 
+::: {#exm-pele}
+
+## Erupções na pele
+
 Considere um indivíduo com erupções na pele. Este tipo de erupções pode ser
 causado por doenças diversas, dentre elas, uma é considerada grave, provocando
 incerteza no indivíduo sobre sua saúde. Sabendo disto, o indivíduo vai ao
 hospital em busca de informações sobre sua condição. A partir de experimentos,
 como exames médicos, a incerteza do indivíduo sobre a doença e sua saúde é
 reduzida pelas informações obtidas.
+
+:::
+
+
+::: {#exm-aviao}
+
+## Avião perdido
 
 Em outro exemplo, considere que um avião caiu num corpo d'água e sua localização
 exata é desconhecida. Conforme descobrimos informações do avião, como partes
@@ -81,6 +99,8 @@ exato ou muito próximo desta queda.
 Este exemplo é mais real do que pensa! Técnicas bayesianas foram
 utilizadas na [busca pelo infame voo
 447](https://www.technologyreview.com/2014/05/27/13283/how-statisticians-found-air-france-flight-447-two-years-after-it-crashed-into-atlantic/)
+
+:::
 
 Num último exemplo, suponha que estamos interessados em estudar a eficácia de um
 medicamento na redução da taxa do colesterol. A incerteza jaz exatamente na

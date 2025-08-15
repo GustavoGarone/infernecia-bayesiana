@@ -172,6 +172,19 @@
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listagem}
 \newcommand*\listoflistings{\listof{codelisting}{Lista de Listagens}}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercício}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Exemplo}[chapter]
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[chapter]
+\theoremstyle{remark}
+\AtBeginDocument{\renewcommand*{\proofname}{Comprovação}}
+\newtheorem*{remark}{Comentário}
+\newtheorem*{solution}{Solução}
+\newtheorem{refremark}{Comentário}[chapter]
+\newtheorem{refsolution}{Solução}[chapter]
 \makeatother
 \makeatletter
 \makeatother
@@ -197,7 +210,7 @@
 \title{Anotações de Inferência Bayesiana}
 \author{Aulas de Luis G. Esteves \& Victor Fossaluza, digitadas por
 Gustavo S. Garone}
-\date{2025-08-06}
+\date{2025-08-15}
 \begin{document}
 \maketitle
 
@@ -222,14 +235,18 @@ Podemos dizer que inferência é qualquer processo racional de redução de
 \textbf{incerteza}. Se não há incerteza, não há necessidade da
 estatística.
 
-Como exemplo simples, considere uma caixa com 5 bolas, algumas verdes
-(\(v\)), e o restante brancas (\(b\)). Suponha que amostramos duas
-bolas, sem reposição. Isto é, retiramos duas bolas desta caixa, e que
-ambas as bolas retiradas foram verdes. A partir deste experimento,
-podemos \emph{inferir} que \(v \geq 2\), ou seja, ao menos duas bolas da
-caixa são verdes. Caso retirássemos uma branca e uma verde, poderíamos
-naturalmente inferir que ao menos uma bola da caixa é branca, e ao menos
-uma é verde.
+\begin{example}[Bolas na
+caixa]\protect\hypertarget{exm-urna}{}\label{exm-urna}
+
+Considere uma caixa com 5 bolas, algumas verdes (\(v\)), e o restante
+brancas (\(b\)). Suponha que amostramos duas bolas, sem reposição. Isto
+é, retiramos duas bolas desta caixa, e que ambas as bolas retiradas
+foram verdes. A partir deste experimento, podemos \emph{inferir} que
+\(v \geq 2\), ou seja, ao menos duas bolas da caixa são verdes. Caso
+retirássemos uma branca e uma verde, poderíamos naturalmente inferir que
+ao menos uma bola da caixa é branca, e ao menos uma é verde.
+
+\end{example}
 
 Note que, mesmo após esse processo, a incerteza sobre a composição da
 caixa contínua. Contudo, com a nova informação, ocorre uma
@@ -240,7 +257,7 @@ incertezas a partir de dados e métodos estatísticos. Neste contexto, a
 \emph{Inferência Bayesiana} é a inferência estatística baseada na
 perspectiva \emph{subjetiva} de probabilidade.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, toptitle=1mm, left=2mm, toprule=.15mm, bottomtitle=1mm, colback=white, rightrule=.15mm, titlerule=0mm, opacityback=0, coltitle=black, opacitybacktitle=0.6, arc=.35mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Probabilidade}]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, bottomtitle=1mm, breakable, coltitle=black, opacitybacktitle=0.6, left=2mm, colback=white, rightrule=.15mm, titlerule=0mm, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Probabilidade}, arc=.35mm, toprule=.15mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white]
 
 O objeto probabilidade pode ser estudada de diversas perspectivas.
 Estamos acostumados com o \emph{cálculo de probabilidade}, em que
@@ -287,12 +304,20 @@ Esta discussão sobre o significado de probabilidade é denominado
 Além do exemplo da caixa com bolas que discutimos anteriormente, podemos
 pensar em outros cenários de incerteza:
 
+\begin{example}[Erupções na
+pele]\protect\hypertarget{exm-pele}{}\label{exm-pele}
+
 Considere um indivíduo com erupções na pele. Este tipo de erupções pode
 ser causado por doenças diversas, dentre elas, uma é considerada grave,
 provocando incerteza no indivíduo sobre sua saúde. Sabendo disto, o
 indivíduo vai ao hospital em busca de informações sobre sua condição. A
 partir de experimentos, como exames médicos, a incerteza do indivíduo
 sobre a doença e sua saúde é reduzida pelas informações obtidas.
+
+\end{example}
+
+\begin{example}[Avião
+perdido]\protect\hypertarget{exm-aviao}{}\label{exm-aviao}
 
 Em outro exemplo, considere que um avião caiu num corpo d'água e sua
 localização exata é desconhecida. Conforme descobrimos informações do
@@ -306,6 +331,8 @@ Este exemplo é mais real do que pensa! Técnicas bayesianas foram
 utilizadas na
 \href{https://www.technologyreview.com/2014/05/27/13283/how-statisticians-found-air-france-flight-447-two-years-after-it-crashed-into-atlantic/}{busca
 pelo infame voo 447}
+
+\end{example}
 
 Num último exemplo, suponha que estamos interessados em estudar a
 eficácia de um medicamento na redução da taxa do colesterol. A incerteza
@@ -331,6 +358,116 @@ informação obtida, atualizaria sua incerteza em uma nova distribuição:
 
 Esta ferramenta de atualização de informação é o cerne da abordagem
 Bayesiana, e será extensivamente estudada pelo curso.
+
+\chapter{Teorema de Bayes}\label{teorema-de-bayes}
+
+Da probabilidade, conhecemos o enunciado do Teorema de Bayes.
+
+\begin{theorem}[Teorema de
+Bayes]\protect\hypertarget{thm-bayes}{}\label{thm-bayes}
+
+Sejam \(A_1, A_2, ... A_n \in \mathcal{A}\) eventos que particionam
+\(\Omega\), isto é,
+\(A_i \cap A_j = \emptyset, \bigcup_{i=1}^n A_i = \Omega,\) e \(D \in
+\mathcal{A}\) um evento tal que \(P(D) > 0\). Então, para
+\(i = 1, 2, \dots, n\),
+
+\[
+P(A_i \rvert D) = \frac{P(D \rvert A_i) P(A_i)}{\sum\limits^{n}_{j = 1} P(D \rvert
+A_j)P(A_j)}
+\]
+
+\end{theorem}
+
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, bottomtitle=1mm, breakable, coltitle=black, opacitybacktitle=0.6, left=2mm, colback=white, rightrule=.15mm, titlerule=0mm, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Detalhes importantes}, arc=.35mm, toprule=.15mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white]
+
+Note que \(P(X=x \rvert \theta = \theta_i)\) é a \emph{função de
+verossimilhança}. Note também que o denominador,
+\(\sum\limits^{n}_{j = 1} P(D \rvert A_j)P(A_j)\), \textbf{\emph{não}}
+depende de \(i\)!!!
+
+\end{tcolorbox}
+
+Note que, para o Exemplo~\ref{exm-urna},
+
+\[
+\begin{aligned}
+E(\theta) &= \frac{5}{2} \\
+E(\theta \rvert X_1 = 1, X_2 = 0)  &= 1 \cdot \frac{2}{10} + 2 \cdot {3}{10} + 3
+\cdot \frac {3}{10} + 4 \cdot \frac{2}{10} = \frac{5}{2} \\
+\mathrm{Var}(\theta \rvert X_1 = 1, X_2 = 0) &= E(\theta^2 \rvert X_1 = 1, X_2=  0) - E(\theta \rvert X_1 = 1, X_2
+= 0)^2 \\ 
+&= 1^2 \cdot \frac{2}{10} + 2^2 \cdot \frac{3}{10} + 3^2
+\cdot \frac{3}{10} + 4^2 \cdot \frac{2}{10} - \frac{25}{4} = \frac{21}{20}
+\end{aligned}
+\]
+
+\begin{exercise}[]\protect\hypertarget{exr-urnaoutraamostra}{}\label{exr-urnaoutraamostra}
+
+Refaça o exercício (encontre a distribuição a posteriori de \(\theta\))
+dado a amostra \(X_1 = 1, X_2 = 1\)
+
+\end{exercise}
+
+\begin{refsolution}
+Pelo Teorema~\ref{thm-bayes},
+
+\[
+\frac{\frac{i}{5} \cdot \frac{i-1}{4} \cdot \frac{1}{6}}{\sum\limits^5_{j=0}
+\frac{j}{5} \cdot \frac{j-1}{4} \cdot \frac{1}{6}} = \frac{i(i-1)}
+{\sum\limits^5_{j=0}j(j-1)} = \frac{i(i-1)}{40}
+\]
+
+Um outro caminho para resolução envolve o uso de proporcionalidade.
+Podemos observar que, pelo Teorema~\ref{thm-bayes}, \[
+\begin{aligned}
+P(\theta = i \rvert \boldsymbol{X} = (1,1)) &\propto
+P(\boldsymbol{X} = (1,1) \rvert \theta = i)P(\theta = i) = \frac{i}{5} \cdot
+\frac{i-1}{4} \cdot \frac{1}{6} \mathbb{1}_{\Theta}(i) \\
+&= \frac{i(i-1)}{120}
+\mathbb{1}_{\Theta}(i) \propto i(i-1) \mathbb{1}_{\Theta}(i)
+\end{aligned}
+\]
+
+ou seja, podemos simplesmente nos preocupar com o numerador e dividir
+(``normalizar'') pela soma dos termos:
+
+\label{sol-urnaoutraamostra}
+
+\end{refsolution}
+
+\begin{example}[Informação sobre a
+soma]\protect\hypertarget{exm-infosomaurna}{}\label{exm-infosomaurna}
+
+Ainda no cenário do Exemplo~\ref{exm-urna}, considere a função
+\(T(\boldsymbol{X}) = X_1 +
+X_2\) do número de bolas verdes na amostra. Você é informado que
+\(T(X_ = 1\). Vamos determinar a distribuição a posteriori de \(\theta\)
+dado que \(X_1 + X_2 = 1\).
+
+\[
+P(\theta = i \rvert X_1 + X_2 = 1) = \frac{P(X_1 + X_2 = 1 \rvert \theta =
+i)P(\theta=i)}{\sum\limits^5_{j=0}P(X_1 + X_2 = 1 \rvert \theta = j)P(\theta=j)}
+\] usando da proporcionalidade, \[
+\begin{aligned}
+P(\theta = i \rvert X_1 + X_2 = 1) &\propto P(X_1 + X_2 \rvert \theta =
+i)P(\theta = i)\\ 
+&= \sum\limits_{(x_1,x_2) \in \mathfrak{X} : x_1 + x_2 = 1}
+P(X_1 = x_1, X_2 = x_2 \rvert \theta = i)P(\theta = i) \\
+&= [P(X_1 = 1, X_2 = 0 \rvert \theta = i) + P(X_1 = 0, X_2 = 1 \rvert \theta = i)]P(\theta = i) \\
+&= \left[\frac{i}{5} \cdot \frac{(5-i)}{4} + \frac{5-i}{5} \cdot \frac{i}{4}\right] \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \\
+&= \frac{i(5-i)}{10} \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \propto i(5-1)
+\mathbb{1}_\Theta(i)
+\end{aligned}
+\]
+
+Note que isso nos concede a mesma quantidade de informação para a
+inferência que a amostra completa, ou seja, obtemos a mesma a posteriori
+utilizando esta estatística. Isto ocorre uma vez que a função
+\(T(\boldsymbol{X})\) é uma estatística \emph{suficiente} no sentido
+bayesiano. Mais adiante, discutiremos isso com mais detalhes.
+
+\end{example}
 
 
 \printbibliography

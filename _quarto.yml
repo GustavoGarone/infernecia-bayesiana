@@ -43,6 +43,7 @@ book:
     - part: Inferência Bayesiana
       chapters:
         - pensamento-bayesiano.qmd
+        - teorema-de-bayes.qmd
     # - references.qmd
 bibliography: references.bib
 csl: associacao-brasileira-de-normas-tecnicas.csl

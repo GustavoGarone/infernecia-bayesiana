@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Aulas de Luis G. Esteves &amp; Victor Fossaluza, digitadas por Gustavo S. Garone">
 
-<title>Anotações de Inferência Bayesiana</title>
+<title>3&nbsp; Teorema de Bayes – Anotações de Inferência Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pensamento-bayesiano.html" rel="next">
+<link href="./pensamento-bayesiano.html" rel="prev">
 <link href="./Omega.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -288,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Inferência Bayesiana</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./teorema-de-bayes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -302,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Inferência Bayesiana</span></span></a>
   </div>
 </li>
@@ -323,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./teorema-de-bayes.html" class="sidebar-item-text sidebar-link">
+  <a href="./teorema-de-bayes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></span></a>
   </div>
 </li>
@@ -334,41 +362,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#inferência-bayesiana" id="toc-inferência-bayesiana" class="nav-link active" data-scroll-target="#inferência-bayesiana"><span class="header-section-number">1</span> Inferência Bayesiana</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./teorema-de-bayes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Anotações de Inferência Bayesiana</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor</div>
-    <div class="quarto-title-meta-contents">
-             <p>Aulas de Luis G. Esteves &amp; Victor Fossaluza, digitadas por Gustavo S. Garone </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Data de Publicação</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">15 de agosto de 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -378,11 +388,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="inferência-bayesiana" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Inferência Bayesiana</h1>
+<p>Da probabilidade, conhecemos o enunciado do Teorema de Bayes.</p>
+<div id="thm-bayes" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 3.1 (Teorema de Bayes)</strong></span> Sejam <span class="math inline">\(A_1, A_2, ... A_n \in \mathcal{A}\)</span> eventos que particionam <span class="math inline">\(\Omega\)</span>, isto é, <span class="math inline">\(A_i \cap A_j = \emptyset, \bigcup_{i=1}^n A_i = \Omega,\)</span> e <span class="math inline">\(D \in
+\mathcal{A}\)</span> um evento tal que <span class="math inline">\(P(D) &gt; 0\)</span>. Então, para <span class="math inline">\(i = 1, 2, \dots, n\)</span>,</p>
+<p><span class="math display">\[
+P(A_i \rvert D) = \frac{P(D \rvert A_i) P(A_i)}{\sum\limits^{n}_{j = 1} P(D \rvert
+A_j)P(A_j)}
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Detalhes importantes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Detalhes importantes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note que <span class="math inline">\(P(X=x \rvert \theta = \theta_i)\)</span> é a <em>função de verossimilhança</em>. Note também que o denominador, <span class="math inline">\(\sum\limits^{n}_{j = 1} P(D \rvert A_j)P(A_j)\)</span>, <strong><em>não</em></strong> depende de <span class="math inline">\(i\)</span>!!!</p>
+</div>
+</div>
+<!-- TODO: resto dos exempos que estão no seu caderno -->
+<p>Note que, para o <a href="pensamento-bayesiano.html#exm-urna" class="quarto-xref">Exemplo&nbsp;<span>2.1</span></a>, <!-- TODO: adicionar a tabela do ex 1 q tbm ta no caderno (pode ser crossref dentro --> <!-- do proprio arquivo) --></p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\theta) &amp;= \frac{5}{2} \\
+E(\theta \rvert X_1 = 1, X_2 = 0)  &amp;= 1 \cdot \frac{2}{10} + 2 \cdot {3}{10} + 3
+\cdot \frac {3}{10} + 4 \cdot \frac{2}{10} = \frac{5}{2} \\
+\mathrm{Var}(\theta \rvert X_1 = 1, X_2 = 0) &amp;= E(\theta^2 \rvert X_1 = 1, X_2=  0) - E(\theta \rvert X_1 = 1, X_2
+= 0)^2 \\
+&amp;= 1^2 \cdot \frac{2}{10} + 2^2 \cdot \frac{3}{10} + 3^2
+\cdot \frac{3}{10} + 4^2 \cdot \frac{2}{10} - \frac{25}{4} = \frac{21}{20}
+\end{aligned}
+\]</span></p>
+<div id="exr-urnaoutraamostra" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 3.1</strong></span> Refaça o exercício (encontre a distribuição a posteriori de <span class="math inline">\(\theta\)</span>) dado a amostra <span class="math inline">\(X_1 = 1, X_2 = 1\)</span></p>
+</div>
+<div id="sol-urnaoutraamostra" class="proof solution">
+<p><span class="proof-title"><em>Solução 3.1</em>. </span>Pelo <a href="#thm-bayes" class="quarto-xref">Teorema&nbsp;<span>3.1</span></a>,</p>
+<p><span class="math display">\[
+\frac{\frac{i}{5} \cdot \frac{i-1}{4} \cdot \frac{1}{6}}{\sum\limits^5_{j=0}
+\frac{j}{5} \cdot \frac{j-1}{4} \cdot \frac{1}{6}} = \frac{i(i-1)}
+{\sum\limits^5_{j=0}j(j-1)} = \frac{i(i-1)}{40}
+\]</span> <!-- TODO: grafico --></p>
+<p>Um outro caminho para resolução envolve o uso de proporcionalidade. Podemos observar que, pelo <a href="#thm-bayes" class="quarto-xref">Teorema&nbsp;<span>3.1</span></a>, <span class="math display">\[
+\begin{aligned}
+P(\theta = i \rvert \boldsymbol{X} = (1,1)) &amp;\propto
+P(\boldsymbol{X} = (1,1) \rvert \theta = i)P(\theta = i) = \frac{i}{5} \cdot
+\frac{i-1}{4} \cdot \frac{1}{6} \mathbb{1}_{\Theta}(i) \\
+&amp;= \frac{i(i-1)}{120}
+\mathbb{1}_{\Theta}(i) \propto i(i-1) \mathbb{1}_{\Theta}(i)
+\end{aligned}
+\]</span></p>
+<p>ou seja, podemos simplesmente nos preocupar com o numerador e dividir (“normalizar”) pela soma dos termos: <!-- TODO: tabela --></p>
+</div>
+<div id="exm-infosomaurna" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 3.1 (Informação sobre a soma)</strong></span> Ainda no cenário do <a href="pensamento-bayesiano.html#exm-urna" class="quarto-xref">Exemplo&nbsp;<span>2.1</span></a>, considere a função <span class="math inline">\(T(\boldsymbol{X}) = X_1 +
+X_2\)</span> do número de bolas verdes na amostra. Você é informado que <span class="math inline">\(T(X_ = 1\)</span>. Vamos determinar a distribuição a posteriori de <span class="math inline">\(\theta\)</span> dado que <span class="math inline">\(X_1 + X_2 = 1\)</span>.</p>
+<p><span class="math display">\[
+P(\theta = i \rvert X_1 + X_2 = 1) = \frac{P(X_1 + X_2 = 1 \rvert \theta =
+i)P(\theta=i)}{\sum\limits^5_{j=0}P(X_1 + X_2 = 1 \rvert \theta = j)P(\theta=j)}
+\]</span> usando da proporcionalidade, <span class="math display">\[
+\begin{aligned}
+P(\theta = i \rvert X_1 + X_2 = 1) &amp;\propto P(X_1 + X_2 \rvert \theta =
+i)P(\theta = i)\\
+&amp;= \sum\limits_{(x_1,x_2) \in \mathfrak{X} : x_1 + x_2 = 1}
+P(X_1 = x_1, X_2 = x_2 \rvert \theta = i)P(\theta = i) \\
+&amp;= [P(X_1 = 1, X_2 = 0 \rvert \theta = i) + P(X_1 = 0, X_2 = 1 \rvert \theta = i)]P(\theta = i) \\
+&amp;= \left[\frac{i}{5} \cdot \frac{(5-i)}{4} + \frac{5-i}{5} \cdot \frac{i}{4}\right] \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \\
+&amp;= \frac{i(5-i)}{10} \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \propto i(5-1)
+\mathbb{1}_\Theta(i)
+\end{aligned}
+\]</span></p>
+<p>Note que isso nos concede a mesma quantidade de informação para a inferência que a amostra completa, ou seja, obtemos a mesma a posteriori utilizando esta estatística. Isto ocorre uma vez que a função <span class="math inline">\(T(\boldsymbol{X})\)</span> é uma estatística <em>suficiente</em> no sentido bayesiano. Mais adiante, discutiremos isso com mais detalhes.</p>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -799,11 +882,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./pensamento-bayesiano.html" class="pagination-link" aria-label="O Pensamento Bayesiano">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O Pensamento Bayesiano</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pensamento-bayesiano.html" class="pagination-link" aria-label="O Pensamento Bayesiano">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O Pensamento Bayesiano</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
