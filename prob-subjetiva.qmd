@@ -1,0 +1,135 @@
+# Construção de Probabilidade Subjetiva
+
+Considere o cenário de um agente contemplando eventos incertos, por exemplo, o
+resultado de um jogo futuro entre o Inter e o Flamengo (neste caso, o placar do
+jogo é desconhecido!). Construímos nosso espaço de probabilidades. $\Omega$ é o
+conjunto de possíveis placares do jogo, $\Omega = \{0,1,\dots,10\}^2$. Um
+agente, como um entusiasta futebolístico dará suas crenças sobre resultados
+possíveis do jogo.
+
+## Opinião do Agente
+
+Sejam $A, B$ eventos. $A \preceq B \leftrightarrow$ O agente acredita em $B$ tanto
+quanto ou mais do que acredita em $A$. No exemplo do futebolista temos, por
+exemplo, algumas de suas possíveis crenças:
+
+$$
+\begin{aligned}
+\{(10,10)\} \preceq \{(0,0)\} \\
+\{(10,10),(9,9)\} \preceq \{(0,0)\} \\
+\{(6,i) : i \in \{0,1,\dots,10\}\} \preceq \{(3,i) : i \in \{0,1,\dots,10\}\} \\
+\end{aligned}
+$$
+
+## Relação de Crença
+
+:::{.callout-tip title="Notação para Crença"}
+Outros símbolos existem para descrever crença. Considere os eventos $A$ e $B$
+analisados por um agente.
+$$
+\begin{aligned}
+A \sim B &\leftrightarrow \text{Acredita em $B$ igualmente que em $A$} \\
+A \prec B &\leftrightarrow \text{Acredita em $B$ mais do que em $A$} \\
+A \preceq B &\leftrightarrow \text{Acredita em $B$ tanto quanto ou mais do que
+em $A$}
+\end{aligned}
+$$
+:::
+
+Para $A, B$ eventos, escrevemos $A \preceq B$ se "$B$ é tão ou mais esperado que
+$A$". Além disso, $A \prec B \iff A \preceq B$ mas $B \not \preceq A$ e $A \sim
+B \iff A \preceq B$ e $B \preceq A$.
+
+Temos como objetivo especificar condições sobre a relação de crença, $\preceq$,
+de modo a assegurar que tal relação admita uma representação numérica por uma
+probabilidade no seguinte sentido: Para $A, B$ eventos,
+
+$$
+A \preceq B \iff P(A) \leq P(B).
+$$
+
+Algumas condições sobre $\preceq$:
+
+- S1 : Para todo $A, B$, $A \preceq B$ ou $B \preceq A$.
+- S2 : Sejam $A_1, A_2, B_1, B_2$ eventos tais que $A_1 \cap A_2 = B_1 \cap B_2 =
+\emptyset$. Então $A_i \preceq B_i, i = 1, 2 \Rightarrow A_1 \cup A_2 \preceq B_1 \cup
+B_2$. Adicionalmente, $A_i \prec B_i$ para algum $i \Rightarrow A_1 \cup A_2
+\prec B_1 \cup B_2$.
+- S3 : Para todo evento $A, A \preceq \Omega$. Além disso, $\emptyset \prec
+\Omega$.
+- Estabelecemos S4, S5 e S6 que não abordaremos no momento.
+
+Seguem consequências dessas condições:
+
+1. Sejam $A, B, C$ eventos tais que $A \cap B = B \cap C = \emptyset$. Então, $A
+   \preceq B \iff A \cup C \preceq B \cup C$.
+
+Verificamos a ida ($\Rightarrow$) tomando S2: $A_1 = A, B_1 = B, A_2 = B_2 = C$.
+Como $A \preceq B$ e $C \preceq C$ e $A \cap C = B \cap C = \emptyset$, segue
+que $A \cup C \preceq B \cup C$.
+
+:::{#exr-conseq1}
+Verifique a volta ($\Leftarrow$). Dica: utilize a contra-positiva
+$$
+B \prec A \Rightarrow B \cup C \prec A \cup C.
+$$
+:::
+
+2. $A \preceq B \iff B^C \preceq A^C$.
+
+Verificamos ($\Rightarrow$): $A \preceq B \Rightarrow (A \cap B) \cup (A \cap B^C) \preceq (B \cap A)
+\cup (B \cap A^C)$. Tome $C' = A \cap B$. Pelo resultado 1., $A \cap B^C \preceq
+B \cap A^C \Rightarrow (A \cap B^C) \cup (A^C \cap B^C) \preceq B (\cap A^C)
+\cup (A^C \cap B^C)$, finalmente, $B^C \preceq A^C$. A volta é análoga.
+
+3. Sejam $A, B, C$ eventos. $A \preceq B$ e $B \preceq C \Rightarrow$.
+
+Verificando: 
+$$
+\begin{aligned}
+A \preceq B &\Rightarrow (A \cap B) \cup (A \cap B^C) \preceq (B \cap A) \cup (B
+\cap A^C) \\
+&\stackrel{1.}{\Rightarrow} A \cap B^C \preceq B \cap A^C \ \ (\mathrm{I}) \\ \\
+B \preceq C &\Rightarrow (B \cap C) \cup (B \cap C^C) \preceq (C \cap B) \cup (C
+\cap B^C) \\
+&\stackrel{1.}{\Rightarrow} B \cap C^C \preceq C \cap B^C \ \ (\mathrm{II}) \\
+\\
+&\stackrel{S2}{\Rightarrow} (A \cap B^C) \cup (B\cap C^C) \preceq (A^C \cap B)
+\cup (B^C \cap C) \\
+&\Rightarrow (A \cap B^C \cap C) \cup (A \cap B^C  \cap C^C) \cup (A \cap B \cap
+C^C) \cup (A^C \cap B \cap C^C) \\ &\preceq (A^C \cap B \cap C) \cup (A^C \cap B
+\cap C^C) \cup (A \cap B^C \cap C) \cup (A^C \cap B^C \cap C) \\ \\
+&\stackrel{1.}{\Rightarrow} (A \cap B^C \cap C) \cup (A \cap B^C \cap C^C) \cup
+(A \cap B \cap C^C) \\ &\preceq (A^C \cap B \cap C) \cup (A \cap B^C \cap C) \cup
+(A^C \cap B^C \cap C) \\ \\
+&\stackrel{1.}{\Rightarrow} (A \cap B^C \cap C) \cup (A \cap B^C \cap C^C) \cup
+(A \cap B \cap C^C) \cup (A \cap B \cap C) \\ &\preceq (A^C \cap B \cap C) \cup (A \cap B^C \cap C) \cup
+(A^C \cap B^C \cap C) \cup (A \cap B \cap C) \\
+&\Rightarrow A \preceq C.
+\end{aligned}
+$$
+
+4. De S3, para todo $A$, $\emptyset \preceq A$.
+
+Com efeito, $A^C \preceq \Omega$. Pela consequência 2., $\Omega^C \preceq
+(A^C)^C$, isto é, $\emptyset \preceq A$. Consequentemente, para todo $A$,
+
+$$
+\emptyset \preceq A \preceq \Omega.
+$$
+
+5. Sejam eventos $A,B$, $A \subseteq B \Rightarrow A \preceq B$.
+
+Verificamos: $B = A \cup (B \cap A^C)$.
+Vimos que $A \subseteq A \ (I)$. Além disso, $\emptyset \subseteq B \cap A^C \
+(II)$. Então, pelo S2, $A \cap \emptyset \preceq A \cup (B \cap A^C) \Rightarrow
+A \preceq B$.
+
+:::{#thm-crencaprob}
+Seja $\preceq$ uma relação de crença satisfazendo as suposições S1 até S6.
+Então, existe e é única probabilidade $P : \{\mathrm{Eventos}\} \rightarrow
+[0,1]$ tal que para quaisquer eventos $A$ e $B$,
+$$
+A \preceq B \iff P(A) \leq P(B).
+$$
+:::

@@ -109,3 +109,115 @@ estatística *suficiente* no sentido bayesiano. Mais adiante, discutiremos isso
 com mais detalhes.
 
 :::
+
+No @exm-aviao (do avião perdido), temos que $\Theta = \{1,2,3\}$ e
+$$
+X = \begin{cases}
+1, & \text{Busca bem sucedida na região 1}, \\
+0, & \text{Caso contrário},
+\end{cases}
+$$
+com $X \rvert \theta = 1 \sim \mathrm{Ber}\left(\frac{9}{10}\right)$ (ou seja, a
+busca na região tem probabilidade de encontrar o avião, se lá ele estiver, de
+90%. Por análise de especialistas, temos as seguintes crenças sobre as regiões:
+$$
+\begin{aligned}
+P(\theta = 1) &= \frac{5}{10} \\
+P(\theta = 2) &= \frac{3}{10} \\
+P(\theta = 3) &= \frac{2}{10}.
+\end{aligned}
+$$
+
+Suponhamos $X = 0$, isto é, investigamos a primeira região e não obtivemos êxito
+em encontrar o avião.
+
+$$
+\begin{aligned}
+P(\theta = 1 \rvert X = 0) &= \frac{P(X = 0 \rvert \theta = 1)P(\theta = 1)}
+{\sum\limits^3_{j=1}P(X = 0 \rvert \theta = j)P(\theta = j)} \\
+&= \frac{\frac{1}{10} \cdot \frac{5}{10}}{\frac{1}{10} \cdot \frac{5}{10} + 1
+\cdot \frac{3}{10} + 1 \cdot \frac{2}{10}} \\
+&= \frac{5}{5 + 30 + 20} = \frac{1}{11}.
+\end{aligned}
+$$
+
+Do mesmo modo,
+$$
+\begin{aligned}
+P(\theta = 2 \rvert X = 0) &= \frac{P(X = 0 \rvert \theta = 2)P(\theta = 2)}
+{\sum\limits^3_{j=1}P(X = 0 \rvert \theta = j)P(\theta = j)} \\
+&= \frac{\frac{1}{10} \cdot \frac{5}{10}}{\frac{1}{10} \cdot \frac{5}{10} + 1
+\cdot \frac{3}{10} + 1 \cdot \frac{2}{10}} \\
+&= \frac{30}{55} = \frac{6}{11}.
+\end{aligned}
+$$
+
+Finalmente,
+$$
+P(\theta = 3 \rvert X = 0) = 1 - P(\theta = 1 \rvert X = 0) - P(\theta = 2
+\rvert X = 0) = \frac{4}{11}.
+$$
+
+Podemos construir nossas tabelas com as distribuições a priori e a posteriori:
+
+<!-- TODO: tabela priori e posteriori -->
+
+:::{#exm-urnatrescores}
+## Urna com três cores
+
+Considere uma caixa com três cores para $5$ bolas, $\theta_1$ verdes,
+$\theta_2$ brancas $5 - \theta_1 - \theta_2$ azuis. Temos que $\theta =
+(\theta_1, \theta_2), \theta \in \Theta = \{(\mu, \nu) \in \mathbb{N}^2 : \mu +
+\nu \leq 5\}, \theta \sim \mathrm{Uniforme}(\Theta)$. Como $\lvert \Theta \rvert
+= 21$, temos que $P(\theta = (i, j)) = P(\theta_1 = i, \theta_2 = j) =
+\frac{1}{21} \cdot \mathbb{1}_{\Theta}(i,j)$.
+
+Suponhamos que colhemos a amostra $\boldsymbol{x} = ((1, 0, 0), (0,0,1))$, isto
+é, $x_1 = (1,0,0), x_2 = (0,0,1), \boldsymbol{X}_n = \boldsymbol{x}$. Disso,
+temos que
+
+$$
+\begin{aligned}
+P(\theta_1 = i, \theta_2 = j \rvert \boldsymbol{X}_n = \boldsymbol{x}) &\propto
+P(X_1 = (1,0,0), X_2 = (0,0,1) \rvert \theta = (i,j))P(\theta = (i,j)) \\
+&= \frac{i}{5}\frac{5-i-j}{4} \cdot \frac{1}{21} \mathbb{1}_{\Theta}(i,j) \\
+\Rightarrow P(\theta = (i,j) \rvert \boldsymbol{X}_n = \boldsymbol{x}) & \propto
+i(5-1-j)\mathbb{1}_{\Theta}(i,j)
+\end{aligned}
+$$
+
+<!-- TODO: tabela dupla entrada i,j aqui a priori e a posteriori-->
+
+:::
+
+:::{.callout-note title="O modelo bayesiano"}
+Considere o espaço paramétrico $\Theta, \theta_i \in \Theta$ e uma amostra
+aleatória $\boldsymbol{X}_n = (X_1, \dots, X_n)$ e a amostra observada
+$\boldsymbol{x}$. O Teorema de Bayes é aplicado na inferência bayesiana:
+
+$$
+\begin{aligned}
+\underbrace{P(\theta = \theta_i \rvert \boldsymbol{X}_n =
+\boldsymbol{x})}_{
+\begin{aligned}
+&\text{probabilidade a posteriori} \\ 
+&\text{de $\{\theta = \theta_i\}$ dado $\boldsymbol{X}_n = \boldsymbol{x}$}
+\end{aligned}}
+&= \frac{P(\boldsymbol{X}_n =
+\boldsymbol{x} \rvert \theta = \theta_i) P(\theta =
+\theta_i)}{\underbrace{P(\boldsymbol{X} =
+\boldsymbol{x})}_{\sum\limits_{j=0}^k P(\boldsymbol{X} = \boldsymbol{x} \rvert
+\theta = \theta_i)P(\theta=\theta_i)}} \\
+&\propto \overbrace{P(\boldsymbol{X} = \boldsymbol{x} \rvert \theta = \theta_i)}^
+{
+\begin{aligned}
+\mathcal{L}_{
+\boldsymbol{x}}(\theta_i) \ &: \ \text{verossimilhança gerada por} \\ 
+&\boldsymbol{x}\ \text{no ponto $\theta_i \in \Theta$}
+\end{aligned}
+} \cdot
+\underbrace{P(\theta = \theta_i)}_{\text{probabilidade a priori de $\{\theta =
+\theta_i\}$}}
+\end{aligned}
+$$
+:::

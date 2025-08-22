@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Teorema de Bayes – Anotações de Inferência Bayesiana</title>
+<title>4&nbsp; Construção de Probabilidade Subjetiva – Anotações de Inferência Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob-subjetiva.html" rel="next">
-<link href="./pensamento-bayesiano.html" rel="prev">
+<link href="./teorema-de-bayes.html" rel="prev">
 <link href="./Omega.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -317,7 +316,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./teorema-de-bayes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./prob-subjetiva.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construção de Probabilidade Subjetiva</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -352,13 +351,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./teorema-de-bayes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./teorema-de-bayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob-subjetiva.html" class="sidebar-item-text sidebar-link">
+  <a href="./prob-subjetiva.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construção de Probabilidade Subjetiva</span></span></a>
   </div>
 </li>
@@ -369,16 +368,23 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#opinião-do-agente" id="toc-opinião-do-agente" class="nav-link active" data-scroll-target="#opinião-do-agente"><span class="header-section-number">4.1</span> Opinião do Agente</a></li>
+  <li><a href="#relação-de-crença" id="toc-relação-de-crença" class="nav-link" data-scroll-target="#relação-de-crença"><span class="header-section-number">4.2</span> Relação de Crença</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./teorema-de-bayes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pensamento-bayesiano.html">Inferência Bayesiana</a></li><li class="breadcrumb-item"><a href="./prob-subjetiva.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construção de Probabilidade Subjetiva</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construção de Probabilidade Subjetiva</span></h1>
 </div>
 
 
@@ -395,177 +401,124 @@ window.Quarto = {
 </header>
 
 
-<p>Da probabilidade, conhecemos o enunciado do Teorema de Bayes.</p>
-<div id="thm-bayes" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 3.1 (Teorema de Bayes)</strong></span> Sejam <span class="math inline">\(A_1, A_2, ... A_n \in \mathcal{A}\)</span> eventos que particionam <span class="math inline">\(\Omega\)</span>, isto é, <span class="math inline">\(A_i \cap A_j = \emptyset, \bigcup_{i=1}^n A_i = \Omega,\)</span> e <span class="math inline">\(D \in
-\mathcal{A}\)</span> um evento tal que <span class="math inline">\(P(D) &gt; 0\)</span>. Então, para <span class="math inline">\(i = 1, 2, \dots, n\)</span>,</p>
+<p>Considere o cenário de um agente contemplando eventos incertos, por exemplo, o resultado de um jogo futuro entre o Inter e o Flamengo (neste caso, o placar do jogo é desconhecido!). Construímos nosso espaço de probabilidades. <span class="math inline">\(\Omega\)</span> é o conjunto de possíveis placares do jogo, <span class="math inline">\(\Omega = \{0,1,\dots,10\}^2\)</span>. Um agente, como um entusiasta futebolístico dará suas crenças sobre resultados possíveis do jogo.</p>
+<section id="opinião-do-agente" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="opinião-do-agente"><span class="header-section-number">4.1</span> Opinião do Agente</h2>
+<p>Sejam <span class="math inline">\(A, B\)</span> eventos. <span class="math inline">\(A \preceq B \leftrightarrow\)</span> O agente acredita em <span class="math inline">\(B\)</span> tanto quanto ou mais do que acredita em <span class="math inline">\(A\)</span>. No exemplo do futebolista temos, por exemplo, algumas de suas possíveis crenças:</p>
 <p><span class="math display">\[
-P(A_i \rvert D) = \frac{P(D \rvert A_i) P(A_i)}{\sum\limits^{n}_{j = 1} P(D \rvert
-A_j)P(A_j)}
+\begin{aligned}
+\{(10,10)\} \preceq \{(0,0)\} \\
+\{(10,10),(9,9)\} \preceq \{(0,0)\} \\
+\{(6,i) : i \in \{0,1,\dots,10\}\} \preceq \{(3,i) : i \in \{0,1,\dots,10\}\} \\
+\end{aligned}
 \]</span></p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Detalhes importantes">
+</section>
+<section id="relação-de-crença" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="relação-de-crença"><span class="header-section-number">4.2</span> Relação de Crença</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Notação para Crença">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Detalhes importantes
+Notação para Crença
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note que <span class="math inline">\(P(X=x \rvert \theta = \theta_i)\)</span> é a <em>função de verossimilhança</em>. Note também que o denominador, <span class="math inline">\(\sum\limits^{n}_{j = 1} P(D \rvert A_j)P(A_j)\)</span>, <strong><em>não</em></strong> depende de <span class="math inline">\(i\)</span>!!!</p>
+<p>Outros símbolos existem para descrever crença. Considere os eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> analisados por um agente. <span class="math display">\[
+\begin{aligned}
+A \sim B &amp;\leftrightarrow \text{Acredita em $B$ igualmente que em $A$} \\
+A \prec B &amp;\leftrightarrow \text{Acredita em $B$ mais do que em $A$} \\
+A \preceq B &amp;\leftrightarrow \text{Acredita em $B$ tanto quanto ou mais do que
+em $A$}
+\end{aligned}
+\]</span></p>
 </div>
 </div>
-<!-- TODO: resto dos exempos que estão no seu caderno -->
-<p>Note que, para o <a href="pensamento-bayesiano.html#exm-urna" class="quarto-xref">Exemplo&nbsp;<span>2.1</span></a>, <!-- TODO: adicionar a tabela do ex 1 q tbm ta no caderno (pode ser crossref dentro --> <!-- do proprio arquivo) --></p>
+<p>Para <span class="math inline">\(A, B\)</span> eventos, escrevemos <span class="math inline">\(A \preceq B\)</span> se “<span class="math inline">\(B\)</span> é tão ou mais esperado que <span class="math inline">\(A\)</span>”. Além disso, <span class="math inline">\(A \prec B \iff A \preceq B\)</span> mas <span class="math inline">\(B \not \preceq A\)</span> e <span class="math inline">\(A \sim
+B \iff A \preceq B\)</span> e <span class="math inline">\(B \preceq A\)</span>.</p>
+<p>Temos como objetivo especificar condições sobre a relação de crença, <span class="math inline">\(\preceq\)</span>, de modo a assegurar que tal relação admita uma representação numérica por uma probabilidade no seguinte sentido: Para <span class="math inline">\(A, B\)</span> eventos,</p>
 <p><span class="math display">\[
+A \preceq B \iff P(A) \leq P(B).
+\]</span></p>
+<p>Algumas condições sobre <span class="math inline">\(\preceq\)</span>:</p>
+<ul>
+<li>S1 : Para todo <span class="math inline">\(A, B\)</span>, <span class="math inline">\(A \preceq B\)</span> ou <span class="math inline">\(B \preceq A\)</span>.</li>
+<li>S2 : Sejam <span class="math inline">\(A_1, A_2, B_1, B_2\)</span> eventos tais que <span class="math inline">\(A_1 \cap A_2 = B_1 \cap B_2 =
+\emptyset\)</span>. Então <span class="math inline">\(A_i \preceq B_i, i = 1, 2 \Rightarrow A_1 \cup A_2 \preceq B_1 \cup
+B_2\)</span>. Adicionalmente, <span class="math inline">\(A_i \prec B_i\)</span> para algum <span class="math inline">\(i \Rightarrow A_1 \cup A_2
+\prec B_1 \cup B_2\)</span>.</li>
+<li>S3 : Para todo evento <span class="math inline">\(A, A \preceq \Omega\)</span>. Além disso, <span class="math inline">\(\emptyset \prec
+\Omega\)</span>.</li>
+<li>Estabelecemos S4, S5 e S6 que não abordaremos no momento.</li>
+</ul>
+<p>Seguem consequências dessas condições:</p>
+<ol type="1">
+<li>Sejam <span class="math inline">\(A, B, C\)</span> eventos tais que <span class="math inline">\(A \cap B = B \cap C = \emptyset\)</span>. Então, <span class="math inline">\(A
+\preceq B \iff A \cup C \preceq B \cup C\)</span>.</li>
+</ol>
+<p>Verificamos a ida (<span class="math inline">\(\Rightarrow\)</span>) tomando S2: <span class="math inline">\(A_1 = A, B_1 = B, A_2 = B_2 = C\)</span>. Como <span class="math inline">\(A \preceq B\)</span> e <span class="math inline">\(C \preceq C\)</span> e <span class="math inline">\(A \cap C = B \cap C = \emptyset\)</span>, segue que <span class="math inline">\(A \cup C \preceq B \cup C\)</span>.</p>
+<div id="exr-conseq1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercício 4.1</strong></span> Verifique a volta (<span class="math inline">\(\Leftarrow\)</span>). Dica: utilize a contra-positiva <span class="math display">\[
+B \prec A \Rightarrow B \cup C \prec A \cup C.
+\]</span></p>
+</div>
+<ol start="2" type="1">
+<li><span class="math inline">\(A \preceq B \iff B^C \preceq A^C\)</span>.</li>
+</ol>
+<p>Verificamos (<span class="math inline">\(\Rightarrow\)</span>): <span class="math inline">\(A \preceq B \Rightarrow (A \cap B) \cup (A \cap B^C) \preceq (B \cap A)
+\cup (B \cap A^C)\)</span>. Tome <span class="math inline">\(C' = A \cap B\)</span>. Pelo resultado 1., <span class="math inline">\(A \cap B^C \preceq
+B \cap A^C \Rightarrow (A \cap B^C) \cup (A^C \cap B^C) \preceq B (\cap A^C)
+\cup (A^C \cap B^C)\)</span>, finalmente, <span class="math inline">\(B^C \preceq A^C\)</span>. A volta é análoga.</p>
+<ol start="3" type="1">
+<li>Sejam <span class="math inline">\(A, B, C\)</span> eventos. <span class="math inline">\(A \preceq B\)</span> e <span class="math inline">\(B \preceq C \Rightarrow\)</span>.</li>
+</ol>
+<p>Verificando: <span class="math display">\[
 \begin{aligned}
-E(\theta) &amp;= \frac{5}{2} \\
-E(\theta \rvert X_1 = 1, X_2 = 0)  &amp;= 1 \cdot \frac{2}{10} + 2 \cdot {3}{10} + 3
-\cdot \frac {3}{10} + 4 \cdot \frac{2}{10} = \frac{5}{2} \\
-\mathrm{Var}(\theta \rvert X_1 = 1, X_2 = 0) &amp;= E(\theta^2 \rvert X_1 = 1, X_2=  0) - E(\theta \rvert X_1 = 1, X_2
-= 0)^2 \\
-&amp;= 1^2 \cdot \frac{2}{10} + 2^2 \cdot \frac{3}{10} + 3^2
-\cdot \frac{3}{10} + 4^2 \cdot \frac{2}{10} - \frac{25}{4} = \frac{21}{20}
+A \preceq B &amp;\Rightarrow (A \cap B) \cup (A \cap B^C) \preceq (B \cap A) \cup (B
+\cap A^C) \\
+&amp;\stackrel{1.}{\Rightarrow} A \cap B^C \preceq B \cap A^C \ \ (\mathrm{I}) \\ \\
+B \preceq C &amp;\Rightarrow (B \cap C) \cup (B \cap C^C) \preceq (C \cap B) \cup (C
+\cap B^C) \\
+&amp;\stackrel{1.}{\Rightarrow} B \cap C^C \preceq C \cap B^C \ \ (\mathrm{II}) \\
+\\
+&amp;\stackrel{S2}{\Rightarrow} (A \cap B^C) \cup (B\cap C^C) \preceq (A^C \cap B)
+\cup (B^C \cap C) \\
+&amp;\Rightarrow (A \cap B^C \cap C) \cup (A \cap B^C  \cap C^C) \cup (A \cap B \cap
+C^C) \cup (A^C \cap B \cap C^C) \\ &amp;\preceq (A^C \cap B \cap C) \cup (A^C \cap B
+\cap C^C) \cup (A \cap B^C \cap C) \cup (A^C \cap B^C \cap C) \\ \\
+&amp;\stackrel{1.}{\Rightarrow} (A \cap B^C \cap C) \cup (A \cap B^C \cap C^C) \cup
+(A \cap B \cap C^C) \\ &amp;\preceq (A^C \cap B \cap C) \cup (A \cap B^C \cap C) \cup
+(A^C \cap B^C \cap C) \\ \\
+&amp;\stackrel{1.}{\Rightarrow} (A \cap B^C \cap C) \cup (A \cap B^C \cap C^C) \cup
+(A \cap B \cap C^C) \cup (A \cap B \cap C) \\ &amp;\preceq (A^C \cap B \cap C) \cup (A \cap B^C \cap C) \cup
+(A^C \cap B^C \cap C) \cup (A \cap B \cap C) \\
+&amp;\Rightarrow A \preceq C.
 \end{aligned}
 \]</span></p>
-<div id="exr-urnaoutraamostra" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercício 3.1</strong></span> Refaça o exercício (encontre a distribuição a posteriori de <span class="math inline">\(\theta\)</span>) dado a amostra <span class="math inline">\(X_1 = 1, X_2 = 1\)</span></p>
-</div>
-<div id="sol-urnaoutraamostra" class="proof solution">
-<p><span class="proof-title"><em>Solução 3.1</em>. </span>Pelo <a href="#thm-bayes" class="quarto-xref">Teorema&nbsp;<span>3.1</span></a>,</p>
+<ol start="4" type="1">
+<li>De S3, para todo <span class="math inline">\(A\)</span>, <span class="math inline">\(\emptyset \preceq A\)</span>.</li>
+</ol>
+<p>Com efeito, <span class="math inline">\(A^C \preceq \Omega\)</span>. Pela consequência 2., <span class="math inline">\(\Omega^C \preceq
+(A^C)^C\)</span>, isto é, <span class="math inline">\(\emptyset \preceq A\)</span>. Consequentemente, para todo <span class="math inline">\(A\)</span>,</p>
 <p><span class="math display">\[
-\frac{\frac{i}{5} \cdot \frac{i-1}{4} \cdot \frac{1}{6}}{\sum\limits^5_{j=0}
-\frac{j}{5} \cdot \frac{j-1}{4} \cdot \frac{1}{6}} = \frac{i(i-1)}
-{\sum\limits^5_{j=0}j(j-1)} = \frac{i(i-1)}{40}
-\]</span> <!-- TODO: grafico --></p>
-<p>Um outro caminho para resolução envolve o uso de proporcionalidade. Podemos observar que, pelo <a href="#thm-bayes" class="quarto-xref">Teorema&nbsp;<span>3.1</span></a>, <span class="math display">\[
-\begin{aligned}
-P(\theta = i \rvert \boldsymbol{X} = (1,1)) &amp;\propto
-P(\boldsymbol{X} = (1,1) \rvert \theta = i)P(\theta = i) = \frac{i}{5} \cdot
-\frac{i-1}{4} \cdot \frac{1}{6} \mathbb{1}_{\Theta}(i) \\
-&amp;= \frac{i(i-1)}{120}
-\mathbb{1}_{\Theta}(i) \propto i(i-1) \mathbb{1}_{\Theta}(i)
-\end{aligned}
+\emptyset \preceq A \preceq \Omega.
 \]</span></p>
-<p>ou seja, podemos simplesmente nos preocupar com o numerador e dividir (“normalizar”) pela soma dos termos: <!-- TODO: tabela --></p>
-</div>
-<div id="exm-infosomaurna" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 3.1 (Informação sobre a soma)</strong></span> Ainda no cenário do <a href="pensamento-bayesiano.html#exm-urna" class="quarto-xref">Exemplo&nbsp;<span>2.1</span></a>, considere a função <span class="math inline">\(T(\boldsymbol{X}) = X_1 +
-X_2\)</span> do número de bolas verdes na amostra. Você é informado que <span class="math inline">\(T(X_ = 1\)</span>. Vamos determinar a distribuição a posteriori de <span class="math inline">\(\theta\)</span> dado que <span class="math inline">\(X_1 + X_2 = 1\)</span>.</p>
-<p><span class="math display">\[
-P(\theta = i \rvert X_1 + X_2 = 1) = \frac{P(X_1 + X_2 = 1 \rvert \theta =
-i)P(\theta=i)}{\sum\limits^5_{j=0}P(X_1 + X_2 = 1 \rvert \theta = j)P(\theta=j)}
-\]</span> usando da proporcionalidade, <span class="math display">\[
-\begin{aligned}
-P(\theta = i \rvert X_1 + X_2 = 1) &amp;\propto P(X_1 + X_2 \rvert \theta =
-i)P(\theta = i)\\
-&amp;= \sum\limits_{(x_1,x_2) \in \mathfrak{X} : x_1 + x_2 = 1}
-P(X_1 = x_1, X_2 = x_2 \rvert \theta = i)P(\theta = i) \\
-&amp;= [P(X_1 = 1, X_2 = 0 \rvert \theta = i) + P(X_1 = 0, X_2 = 1 \rvert \theta = i)]P(\theta = i) \\
-&amp;= \left[\frac{i}{5} \cdot \frac{(5-i)}{4} + \frac{5-i}{5} \cdot \frac{i}{4}\right] \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \\
-&amp;= \frac{i(5-i)}{10} \cdot \frac{1}{6} \mathbb{1}_\Theta(i) \propto i(5-1)
-\mathbb{1}_\Theta(i)
-\end{aligned}
+<ol start="5" type="1">
+<li>Sejam eventos <span class="math inline">\(A,B\)</span>, <span class="math inline">\(A \subseteq B \Rightarrow A \preceq B\)</span>.</li>
+</ol>
+<p>Verificamos: <span class="math inline">\(B = A \cup (B \cap A^C)\)</span>. Vimos que <span class="math inline">\(A \subseteq A \ (I)\)</span>. Além disso, <span class="math inline">\(\emptyset \subseteq B \cap A^C \
+(II)\)</span>. Então, pelo S2, <span class="math inline">\(A \cap \emptyset \preceq A \cup (B \cap A^C) \Rightarrow
+A \preceq B\)</span>.</p>
+<div id="thm-crencaprob" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 4.1</strong></span> Seja <span class="math inline">\(\preceq\)</span> uma relação de crença satisfazendo as suposições S1 até S6. Então, existe e é única probabilidade <span class="math inline">\(P : \{\mathrm{Eventos}\} \rightarrow
+[0,1]\)</span> tal que para quaisquer eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, <span class="math display">\[
+A \preceq B \iff P(A) \leq P(B).
 \]</span></p>
-<p>Note que isso nos concede a mesma quantidade de informação para a inferência que a amostra completa, ou seja, obtemos a mesma a posteriori utilizando esta estatística. Isto ocorre uma vez que a função <span class="math inline">\(T(\boldsymbol{X})\)</span> é uma estatística <em>suficiente</em> no sentido bayesiano. Mais adiante, discutiremos isso com mais detalhes.</p>
-</div>
-<p>No <a href="pensamento-bayesiano.html#exm-aviao" class="quarto-xref">Exemplo&nbsp;<span>2.3</span></a> (do avião perdido), temos que <span class="math inline">\(\Theta = \{1,2,3\}\)</span> e <span class="math display">\[
-X = \begin{cases}
-1, &amp; \text{Busca bem sucedida na região 1}, \\
-0, &amp; \text{Caso contrário},
-\end{cases}
-\]</span> com <span class="math inline">\(X \rvert \theta = 1 \sim \mathrm{Ber}\left(\frac{9}{10}\right)\)</span> (ou seja, a busca na região tem probabilidade de encontrar o avião, se lá ele estiver, de 90%. Por análise de especialistas, temos as seguintes crenças sobre as regiões: <span class="math display">\[
-\begin{aligned}
-P(\theta = 1) &amp;= \frac{5}{10} \\
-P(\theta = 2) &amp;= \frac{3}{10} \\
-P(\theta = 3) &amp;= \frac{2}{10}.
-\end{aligned}
-\]</span></p>
-<p>Suponhamos <span class="math inline">\(X = 0\)</span>, isto é, investigamos a primeira região e não obtivemos êxito em encontrar o avião.</p>
-<p><span class="math display">\[
-\begin{aligned}
-P(\theta = 1 \rvert X = 0) &amp;= \frac{P(X = 0 \rvert \theta = 1)P(\theta = 1)}
-{\sum\limits^3_{j=1}P(X = 0 \rvert \theta = j)P(\theta = j)} \\
-&amp;= \frac{\frac{1}{10} \cdot \frac{5}{10}}{\frac{1}{10} \cdot \frac{5}{10} + 1
-\cdot \frac{3}{10} + 1 \cdot \frac{2}{10}} \\
-&amp;= \frac{5}{5 + 30 + 20} = \frac{1}{11}.
-\end{aligned}
-\]</span></p>
-<p>Do mesmo modo, <span class="math display">\[
-\begin{aligned}
-P(\theta = 2 \rvert X = 0) &amp;= \frac{P(X = 0 \rvert \theta = 2)P(\theta = 2)}
-{\sum\limits^3_{j=1}P(X = 0 \rvert \theta = j)P(\theta = j)} \\
-&amp;= \frac{\frac{1}{10} \cdot \frac{5}{10}}{\frac{1}{10} \cdot \frac{5}{10} + 1
-\cdot \frac{3}{10} + 1 \cdot \frac{2}{10}} \\
-&amp;= \frac{30}{55} = \frac{6}{11}.
-\end{aligned}
-\]</span></p>
-<p>Finalmente, <span class="math display">\[
-P(\theta = 3 \rvert X = 0) = 1 - P(\theta = 1 \rvert X = 0) - P(\theta = 2
-\rvert X = 0) = \frac{4}{11}.
-\]</span></p>
-<p>Podemos construir nossas tabelas com as distribuições a priori e a posteriori:</p>
-<!-- TODO: tabela priori e posteriori -->
-<div id="exm-urnatrescores" class="theorem example">
-<p><span class="theorem-title"><strong>Exemplo 3.2 (Urna com três cores)</strong></span> Considere uma caixa com três cores para <span class="math inline">\(5\)</span> bolas, <span class="math inline">\(\theta_1\)</span> verdes, <span class="math inline">\(\theta_2\)</span> brancas <span class="math inline">\(5 - \theta_1 - \theta_2\)</span> azuis. Temos que <span class="math inline">\(\theta =
-(\theta_1, \theta_2), \theta \in \Theta = \{(\mu, \nu) \in \mathbb{N}^2 : \mu +
-\nu \leq 5\}, \theta \sim \mathrm{Uniforme}(\Theta)\)</span>. Como <span class="math inline">\(\lvert \Theta \rvert
-= 21\)</span>, temos que <span class="math inline">\(P(\theta = (i, j)) = P(\theta_1 = i, \theta_2 = j) =
-\frac{1}{21} \cdot \mathbb{1}_{\Theta}(i,j)\)</span>.</p>
-<p>Suponhamos que colhemos a amostra <span class="math inline">\(\boldsymbol{x} = ((1, 0, 0), (0,0,1))\)</span>, isto é, <span class="math inline">\(x_1 = (1,0,0), x_2 = (0,0,1), \boldsymbol{X}_n = \boldsymbol{x}\)</span>. Disso, temos que</p>
-<p><span class="math display">\[
-\begin{aligned}
-P(\theta_1 = i, \theta_2 = j \rvert \boldsymbol{X}_n = \boldsymbol{x}) &amp;\propto
-P(X_1 = (1,0,0), X_2 = (0,0,1) \rvert \theta = (i,j))P(\theta = (i,j)) \\
-&amp;= \frac{i}{5}\frac{5-i-j}{4} \cdot \frac{1}{21} \mathbb{1}_{\Theta}(i,j) \\
-\Rightarrow P(\theta = (i,j) \rvert \boldsymbol{X}_n = \boldsymbol{x}) &amp; \propto
-i(5-1-j)\mathbb{1}_{\Theta}(i,j)
-\end{aligned}
-\]</span></p>
-<!-- TODO: tabela dupla entrada i,j aqui a priori e a posteriori-->
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="O modelo bayesiano">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-O modelo bayesiano
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Considere o espaço paramétrico <span class="math inline">\(\Theta, \theta_i \in \Theta\)</span> e uma amostra aleatória <span class="math inline">\(\boldsymbol{X}_n = (X_1, \dots, X_n)\)</span> e a amostra observada <span class="math inline">\(\boldsymbol{x}\)</span>. O Teorema de Bayes é aplicado na inferência bayesiana:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\underbrace{P(\theta = \theta_i \rvert \boldsymbol{X}_n =
-\boldsymbol{x})}_{
-\begin{aligned}
-&amp;\text{probabilidade a posteriori} \\
-&amp;\text{de $\{\theta = \theta_i\}$ dado $\boldsymbol{X}_n = \boldsymbol{x}$}
-\end{aligned}}
-&amp;= \frac{P(\boldsymbol{X}_n =
-\boldsymbol{x} \rvert \theta = \theta_i) P(\theta =
-\theta_i)}{\underbrace{P(\boldsymbol{X} =
-\boldsymbol{x})}_{\sum\limits_{j=0}^k P(\boldsymbol{X} = \boldsymbol{x} \rvert
-\theta = \theta_i)P(\theta=\theta_i)}} \\
-&amp;\propto \overbrace{P(\boldsymbol{X} = \boldsymbol{x} \rvert \theta = \theta_i)}^
-{
-\begin{aligned}
-\mathcal{L}_{
-\boldsymbol{x}}(\theta_i) \ &amp;: \ \text{verossimilhança gerada por} \\
-&amp;\boldsymbol{x}\ \text{no ponto $\theta_i \in \Theta$}
-\end{aligned}
-} \cdot
-\underbrace{P(\theta = \theta_i)}_{\text{probabilidade a priori de $\{\theta =
-\theta_i\}$}}
-\end{aligned}
-\]</span></p>
-</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -982,14 +935,11 @@ O modelo bayesiano
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./pensamento-bayesiano.html" class="pagination-link" aria-label="O Pensamento Bayesiano">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">O Pensamento Bayesiano</span></span>
+      <a href="./teorema-de-bayes.html" class="pagination-link" aria-label="Teorema de Bayes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Teorema de Bayes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob-subjetiva.html" class="pagination-link" aria-label="Construção de Probabilidade Subjetiva">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construção de Probabilidade Subjetiva</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

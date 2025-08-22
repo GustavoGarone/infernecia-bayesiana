@@ -44,6 +44,7 @@ book:
       chapters:
         - pensamento-bayesiano.qmd
         - teorema-de-bayes.qmd
+        - prob-subjetiva.qmd
     # - references.qmd
 bibliography: references.bib
 csl: associacao-brasileira-de-normas-tecnicas.csl
